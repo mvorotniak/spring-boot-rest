@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.springbootrest.domain.Customer;
 import com.example.springbootrest.entity.CustomerEntity;
+import com.example.springbootrest.exception.ElementNotFoundException;
 import com.example.springbootrest.mapper.CustomerMapper;
 import com.example.springbootrest.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomerById(final Long id) {
         return this.customerMapper.toDomainEntity(this.customerRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("404")));
+            .orElseThrow(() -> new ElementNotFoundException(String.format("Customer with id [%s] not found", id))));
     }
 
     @Transactional
