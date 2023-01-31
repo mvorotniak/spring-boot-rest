@@ -13,6 +13,7 @@ import com.example.springbootrest.api.CustomerDTO;
 import com.example.springbootrest.api.CustomersDTO;
 import com.example.springbootrest.mapper.CustomerMapper;
 import com.example.springbootrest.service.CustomerService;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -24,6 +25,7 @@ public class CustomerController {
 
     private final CustomerMapper customerMapper;
 
+    @ApiOperation("A list of all the Customers.")
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public CustomersDTO findAllCustomers() {
